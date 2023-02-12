@@ -2,6 +2,7 @@
 
 int main()
 {
+    //line follow 
     create_connect();
     while(get_create_rcliff_amt()>2000 && get_create_lcliff_amt()>2000)
     {
