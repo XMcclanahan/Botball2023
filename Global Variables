@@ -1,0 +1,127 @@
+void go_straight(int dist);
+void go_straight(int dist)
+{
+    //create_connect();
+    set_create_distance(0);
+    while(get_create_distance() < dist)
+    {
+        create_drive_direct(200,200);
+        msleep(50);
+    }
+    create_stop();
+    //create_disconnect();
+}
+
+void L_turn(int degree);
+void L_turn(int degree)
+{
+    //create_connect();
+    set_create_total_angle(0);
+    while (get_create_total_angle() < degree)
+    {
+        create_drive_direct(-100,100);
+        msleep(50);
+    }
+    create_stop();
+}
+
+void R_turn(int degree);
+void R_turn(int degree)
+{
+    //create_connect();
+    set_create_total_angle(0);
+    while(get_create_total_angle() > -degree)
+    {
+        create_drive_direct(200,-200);
+    }
+    create_stop();
+}
+
+void go_back(int dist);
+void go_back(int dist)
+{
+    //create_connect();
+    set_create_distance(0);
+    while(get_create_distance() > dist) //need to have negative distance 
+    {
+        create_drive_direct(-200,-200);
+        msleep(10);
+    }
+    create_stop(); 
+}
+
+void MasS_movearm(int dist);
+void MasS_movearm(int dist)
+{
+    cmpc(0);
+    while(gmpc(0) < dist)
+    {
+        motor(0,100);
+    }
+    ao();
+}
+
+void go_Straight_till_bump();
+void go_Straight_till_bump()
+{
+
+    //create_connect();
+
+
+    while((get_create_rbump() == 0) && (get_create_lbump() == 0))
+    {
+        create_drive_direct(200,200);
+        msleep(50);
+    }
+    create_stop();
+    //create_disconnect();
+}
+
+void square_up(int gray);
+void square_up(int gray)
+{
+    while (1){
+        if(get_create_lcliff_amt()> gray && get_create_rcliff_amt()> gray)
+        {
+            create_drive_direct(200,200);
+        }
+        if(get_create_rcliff_amt()< gray)
+        {
+            create_drive_direct(200,0);
+        }
+        if(get_create_lcliff_amt()< gray)
+        {
+            create_drive_direct(0,200);
+        }
+        if(get_create_lcliff_amt()< gray && get_create_rcliff_amt()< gray)
+        {
+            create_drive_direct(0,0);
+            break;
+        }
+    }
+}
+void line_follow(int grey);
+void line_follow(int grey)
+{
+    while(get_create_rcliff_amt()>grey)
+    {
+        if(get_create_rfcliff_amt()>grey)
+        {
+            create_drive_direct(150,75);
+        }
+        if(get_create_rfcliff_amt()<grey)
+        {
+            create_drive_direct(75,150);
+        }
+    }
+}
+void go_till_black(int black);
+void go_till_black(int black)
+{
+    while(get_create_lcliff_amt()> black)
+    {
+        create_drive_direct(300,300);
+        msleep(50);
+    }
+    create_stop();
+}
