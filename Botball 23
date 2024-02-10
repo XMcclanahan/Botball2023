@@ -1,0 +1,41 @@
+int main()
+{
+    wait_for_light(0);
+    shut_down_in(119);
+    create_connect();
+    enable_servos();
+    set_servo_position(1,1600);
+    //square up with first black line(variable is number between black and white values)
+    square_up(2000);
+    go_straight(50);
+    //go tillsecond black line
+    //go_till_black(2000);
+    square_up(2000);
+    go_straight(50);
+    //square up on third black line
+    square_up(2000);
+    /* L_turn(20);
+    go_straight(450);
+    R_turn(55);*/
+    //sets claw, moves toward cube then turns on camera, moves toward cube and grabs cube
+    grab_cube();
+    //
+    msleep(500);
+    go_back(-150);
+    msleep(500);
+    L_turn(90);
+    square_up(2000);
+    L_turn(88);
+    line_follow(2300);
+    go_straight(50);
+    line_follow2(2300);
+	set_servo_position(2,1250);
+    msleep(500);
+    go_straight(150);
+    R_turn(15);
+    //line_follow(2000);
+
+
+    create_disconnect();
+    return 0;
+}
